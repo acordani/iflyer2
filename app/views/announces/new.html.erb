@@ -10,6 +10,9 @@
               <input id="user_input_autocomplete_address" name="address" class="form-control" placeholder="What is your address?">
             </div>
           </fieldset>
+          <fieldset>
+            <input id="locality" name="locality" type="hidden">
+          </fieldset>
         </div>
         <%= f.input :description, placeholder:"" %>
         <%= f.input :announce_type, placeholder:"", collection: ["Appartement", "Maison", "Terrain", "Local Commercial"] %>

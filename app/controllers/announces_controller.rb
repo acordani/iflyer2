@@ -7,6 +7,7 @@ class AnnouncesController < ApplicationController
   	def create
 	    @announce = Announce.new(announce_params)
 	    @announce.address = params[:address]
+	    @announce.locality = params[:locality]
 	    @announce.user_id = current_user.id
 	    if @announce.save
 	      redirect_to announce_path(@announce)
@@ -25,7 +26,7 @@ class AnnouncesController < ApplicationController
   	private
 
   	def announce_params
-    	params.require(:announce).permit(:price, :description, :announce_type, :bed, :bath, :surface, :title,:latitude, :longitude, :address, :class_energy, :ges,:room, photos: [] )
+    	params.require(:announce).permit(:price, :description, :announce_type, :bed, :bath, :surface, :title,:latitude, :longitude, :address, :class_energy, :ges,:room, :locality, photos: [] )
   	end
 
 end
