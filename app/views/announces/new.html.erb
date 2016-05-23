@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= simple_form_for @announce do |f| %>
+        <%= f.input :title, placeholder:"Appartement centre ville Paris" %>
+        <div class="row">
+          <fieldset>
+            <div class="form-group">
+              <label class="control-label">Address</label><br>
+              <input id="user_input_autocomplete_address" name="address" class="form-control" placeholder="What is your address?">
+            </div>
+          </fieldset>
+        </div>
+        <%= f.input :description, placeholder:"" %>
+        <%= f.input :announce_type, placeholder:"", collection: ["Appartement", "Maison", "Terrain", "Local Commercial"] %>
+        <%= f.input :bed, collection: 1...6 %>
+        <%= f.input :room, collection: 1...10 %>
+        <%= f.input :bath, collection: 1...6 %>
+        <%= f.input :surface %>
+        <%= f.input :price %>
+        <div class="row">
+          <div class="col-md-3">
+            <label>
+              Classification Energetique
+              <div class="form-group">
+                <%= f.input :class_energy, as: :select, collection: ["A","B","C","D","E","F","G"],label: false, class: "form-control" %>
+              </div>
+              <div class="mb-20"></div>
+            </label>
+          </div>
+        </div>
+        <%= f.input :photos, as: :attachinary %>
+        <%= f.button :submit %>
+        <% end %>
+      
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,21 @@
+.container-fluid {
+	padding-left:0;
+	padding-right:0;
+}
+
+.background-photo {
+	background-size:cover;
+	width:100%;
+	border-radius:10px;
+	
+}
+
+.top {
+	position:relative;
+}
+
+.title {
+	margin-top: -300px;
+	background-color: rgba(105, 105, 105, 0.5);
+	padding: 10px;
+}

@@ -1,0 +1,121 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 padded">
+      <div class="top">
+        <%= cl_image_tag @announce.photos.first.path, height: 500, crop: :fill, class:"background-photo" %>
+          <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+              <div class="title text-center">
+                <h1><%= @announce.title.capitalize %></h1>
+                <h2><%= @announce.price %>€</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <h3><%= @announce.announce_type %> de <%= @announce.room %> pièce(s) principale(s)</h3>
+      
+</div>
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#photos" aria-controls="home" role="tab" data-toggle="tab">Photos</a></li>
+        <li role="presentation"><a href="#description" aria-controls="profile" role="tab" data-toggle="tab">Carte</a></li>
+        <li role="presentation"><a href="#dpe" aria-controls="messages" role="tab" data-toggle="tab">Diagnostics</a></li>
+        <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+      </ul>
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="photos">
+          <div id="owl-demo" class="">
+            <% @announce.photos.each do |photo| %>
+              <div class="item" style="background-image: url(<%= cloudinary_url photo.path %>)">
+
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="description">
+          <div class="title title-announce"> <h4>aaaaa</h4></div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="dpe">
+              <div class="col-md-6 col-md-offset-3 mt-10">
+                <% if @announce.class_energy == "A" %>
+                  <div class="fleche fleche_a_active"> A </div> <span class="ok">OK</span><br>
+                <% else %>
+                  <div class="fleche fleche_a"> A </div><br>
+                <% end %>
+                <% if @announce.class_energy == "B" %>
+                  <div class="fleche fleche_b_active"> B </div><span class="ok">OK</span><br>
+                <% else %>
+                  <div class="fleche fleche_b"> B </div></br>
+                <% end %>
+                <% if @announce.class_energy == "C" %>
+                  <div class="fleche fleche_c_active"> C </div><span class="ok">OK</span><br>
+                <% else %>
+                  <div class="fleche fleche_c"> C </div><br>
+                <% end %>
+                <% if @announce.class_energy == "D" %>
+                  <div class="fleche fleche_d_active"> D </div><span class="ok">OK</span><br>
+                <% else %>
+                  <div class="fleche fleche_d"> D </div><br>
+                <% end %>
+                <% if @announce.class_energy == "E" %>
+                  <div class="fleche fleche_e_active"> E </div><span class="ok">OK</span><br>
+                <% else %>
+                  <div class="fleche fleche_e"> E </div><br>
+                <% end %>
+                <% if @announce.class_energy == "F" %>
+                  <div class="fleche fleche_f_active"> F </div><span class="ok">OK</span><br>
+                <% else %>
+                  <div class="fleche fleche_f"> F </div><br>
+                <% end %>
+                <% if @announce.class_energy == "G" %>
+                  <div class="fleche fleche_g_active"> G </div><span class="ok">OK</span><br>
+                <% else %>
+                  <div class="fleche fleche_g"> G </div><br>
+                <% end %>
+                <% if @announce.class_energy == "" %>
+                 <h5> Il n'y a pas de DPE pour le moment</h5>
+                <% end %>
+              </div>
+            </div>
+
+        <div role="tabpanel" class="tab-pane" id="settings">...</div>
+      </div>
+    </div>
+  </div>
+  <div class="title title-announce"> <h4>Situation du bien</h4> </div>
+    <div class="mt-10" id="map" style="width: 100%; height: 600px"></div>
+
+
+
+</div>
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(document).on('ready', function() {
+      circle = [{lng: <%= @announce.longitude %>, lat: <%= @announce.latitude %>, radius: 400}]
+
+      circle_options = { strokeColor: "#267e4a",strokeOpacity: 1, strokeWeight: 2, fillColor: "#267e4a", fillOpacity:0.15 }
+      handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'map' } }, function(){
+        markers = handler.addMarkers(<%= raw @markers.to_json %>);
+        handler.addCircles(circle, circle_options);
+        handler.getMap().setOptions({ scrollwheel: false });
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        handler.getMap().setZoom(14);
+      });
+    })
+  <% end %>
+
+<% end %>
+
+
+
