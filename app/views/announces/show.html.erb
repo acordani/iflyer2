@@ -164,6 +164,7 @@
         handler.bounds.extendWith(markers);
         handler.fitMapToBounds();
         handler.getMap().setZoom(14);
+        markers = handler.removeMarkers(markers);
       });
     })
   <% end %>
