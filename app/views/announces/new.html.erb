@@ -4,16 +4,15 @@
       <%= simple_form_for @announce do |f| %>
         <%= f.input :title, placeholder:"Appartement centre ville Paris" %>
         <div class="row">
-          <fieldset>
-            <div class="form-group">
-              <label class="control-label">Address</label><br>
-              <input id="user_input_autocomplete_address" name="address" class="form-control" placeholder="What is your address?">
-            </div>
-          </fieldset>
+          
           <fieldset>
             <input id="locality" name="locality" type="hidden">
           </fieldset>
         </div>
+        <%= f.input :address, label:"Entrez votre adresse", input_html: { id: :user_input_autocomplete_address } %>
+        <fieldset>
+          <input id="locality" name="locality" type="hidden">
+        </fieldset>
         <%= f.input :description, placeholder:"" %>
         <%= f.input :announce_type, placeholder:"", collection: ["Appartement", "Maison", "Terrain", "Local Commercial"] %>
         <%= f.input :bed, collection: 1...6 %>

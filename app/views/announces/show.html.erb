@@ -17,8 +17,61 @@
   <div class="row">
     <div class="col-md-8">
       <h3><%= @announce.announce_type %> de <%= @announce.room %> pièce(s) principale(s)</h3>
-      <p><%= @announce.locality %>
-</div>
+      <p><%= @announce.locality %></p>
+      <hr>
+      <p><%= @announce.description %></p>
+      <hr>
+      <div class="row">
+        <div class="col-md-3">
+          <p class="grey">Type de bien: </p>
+        </div>
+        <div class="col-md-3">
+          <%= @announce.announce_type %>
+        </div>
+        <div class="col-md-4">
+          <p class="grey">Nombre de Pièces: </p>
+        </div>
+        <div class="col-md-2">
+          <%= @announce.room %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <p class="grey">Prix: </p>
+        </div>
+        <div class="col-md-3">
+          <%= @announce.price %> €
+        </div>
+        <div class="col-md-4">
+          <p class="grey">Nombre de Chambres: </p>
+        </div>
+        <div class="col-md-2">
+          <%= @announce.bed %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <p class="grey">Taxe Foncière: </p>
+        </div>
+        <div class="col-md-3">
+          <%= @announce.price %> €
+        </div>
+        <div class="col-md-4">
+          <p class="grey">Nombre de Salle de bains: </p>
+        </div>
+        <div class="col-md-2">
+          <%= @announce.bath %>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div> <h4>Situation du bien</h4> </div>
+        <div class="mt-10" id="map" style="width: 100%; height: 600px"></div>
+      </div>
+    </div>
+
+      
+    </div>
 
 
   <div class="row">
